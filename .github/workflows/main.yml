@@ -37,9 +37,13 @@ jobs:
         id: runCollection
         run: |  
           newman run src/resources/postman-collections/CreateAStandardLessonPlan.postman_collection.json -r "htmlextra,cli" --bail
+        continue-on-error: true 
           newman run src/resources/postman-collections/CreateMultipleBlockProjectLessonPlan.postman_collection.json -r "htmlextra,cli" --bail
+        continue-on-error: true
           newman run src/resources/postman-collections/ValidateAProject.postman_collection.json -r "htmlextra,cli" --bail
+        continue-on-error: true
           newman run src/resources/postman-collections/JourneyOfAProjectInVariousStages.postman_collection.json -r "htmlextra,cli" --bail
+        continue-on-error: true
           newman run src/resources/postman-collections/SearchALessonPlan.postman_collection.json -r "htmlextra,cli" --bail
         continue-on-error: true
     
