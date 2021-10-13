@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "87fd8ae5-336e-4841-842f-dc2261753d26",
-		"name": "Search A Lesson Plan",
+		"name": "SearchALessonPlan",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -56,16 +56,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/login",
-							"protocol": "https",
+							"raw": "{{loginURL}}",
 							"host": [
-								"accounts-api",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"login"
+								"{{loginURL}}"
 							]
 						}
 					},
@@ -131,15 +124,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -194,15 +181,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -257,15 +238,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -320,15 +295,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -383,15 +352,193 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchAStandardProjectName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"pm.test(\"Verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify Project Name\",()=>{\r",
+									"   pm.expect(jsonData.data.multipleProjects.projects[0].name).to.eql(pm.environment.get(\"createdProjectName\"));\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{cesToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  multipleProjects(filters: {page: 0, limit: 50, isMyProjects: false, searchKey: \"{{createdProjectName}}\"}) {\r\n    totalCount\r\n    projects {\r\n      id\r\n      name\r\n      workflowStatus\r\n      product {\r\n        id\r\n        name\r\n      }\r\n      board {\r\n        id\r\n        name\r\n      }\r\n      standard {\r\n        id\r\n        name\r\n        displayName\r\n      }\r\n      subject {\r\n        id\r\n        name\r\n        shortName\r\n      }\r\n      block {\r\n        id\r\n        bId\r\n        title\r\n        childrenType\r\n      }\r\n      contents {\r\n        library_id\r\n        name\r\n        currentStage\r\n        type\r\n        template\r\n      }\r\n      dailyPlans {\r\n        library_id\r\n        name\r\n        currentStage\r\n        type\r\n      }\r\n      assignees {\r\n        author {\r\n          id\r\n          name\r\n        }\r\n        reviewer1 {\r\n          id\r\n          name\r\n        }\r\n        reviewer2 {\r\n          id\r\n          name\r\n        }\r\n        academicSignOff {\r\n          id\r\n          name\r\n        }\r\n        editor {\r\n          id\r\n          name\r\n        }\r\n        visualizer {\r\n          id\r\n          name\r\n        }\r\n        assetUploader {\r\n          id\r\n          name\r\n        }\r\n        assetAuthorizer {\r\n          id\r\n          name\r\n        }\r\n        proofReader {\r\n          id\r\n          name\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}",
+							"host": [
+								"{{apiHost}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search A First Project From Multiple Projects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"pm.test(\"Verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify Project Name\",()=>{\r",
+									"   pm.expect(jsonData.data.multipleProjects.projects[0].name).to.eql(pm.environment.get(\"firstProjectName\"));\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{cesToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  multipleProjects(filters: {page: 0, limit: 50, isMyProjects: false, searchKey: \"{{firstProjectName}}\"}) {\r\n    totalCount\r\n    projects {\r\n      id\r\n      name\r\n      workflowStatus\r\n      product {\r\n        id\r\n        name\r\n      }\r\n      board {\r\n        id\r\n        name\r\n      }\r\n      standard {\r\n        id\r\n        name\r\n        displayName\r\n      }\r\n      subject {\r\n        id\r\n        name\r\n        shortName\r\n      }\r\n      block {\r\n        id\r\n        bId\r\n        title\r\n        childrenType\r\n      }\r\n      contents {\r\n        library_id\r\n        name\r\n        currentStage\r\n        type\r\n        template\r\n      }\r\n      dailyPlans {\r\n        library_id\r\n        name\r\n        currentStage\r\n        type\r\n      }\r\n      assignees {\r\n        author {\r\n          id\r\n          name\r\n        }\r\n        reviewer1 {\r\n          id\r\n          name\r\n        }\r\n        reviewer2 {\r\n          id\r\n          name\r\n        }\r\n        academicSignOff {\r\n          id\r\n          name\r\n        }\r\n        editor {\r\n          id\r\n          name\r\n        }\r\n        visualizer {\r\n          id\r\n          name\r\n        }\r\n        assetUploader {\r\n          id\r\n          name\r\n        }\r\n        assetAuthorizer {\r\n          id\r\n          name\r\n        }\r\n        proofReader {\r\n          id\r\n          name\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}",
+							"host": [
+								"{{apiHost}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search A Second Project From Multiple projects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"pm.test(\"Verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify Project Name\",()=>{\r",
+									"   pm.expect(jsonData.data.multipleProjects.projects[0].name).to.eql(pm.environment.get(\"secondProjectName\"));\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{cesToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  multipleProjects(filters: {page: 0, limit: 50, isMyProjects: false, searchKey: \"{{secondProjectName}}\"}) {\r\n    totalCount\r\n    projects {\r\n      id\r\n      name\r\n      workflowStatus\r\n      product {\r\n        id\r\n        name\r\n      }\r\n      board {\r\n        id\r\n        name\r\n      }\r\n      standard {\r\n        id\r\n        name\r\n        displayName\r\n      }\r\n      subject {\r\n        id\r\n        name\r\n        shortName\r\n      }\r\n      block {\r\n        id\r\n        bId\r\n        title\r\n        childrenType\r\n      }\r\n      contents {\r\n        library_id\r\n        name\r\n        currentStage\r\n        type\r\n        template\r\n      }\r\n      dailyPlans {\r\n        library_id\r\n        name\r\n        currentStage\r\n        type\r\n      }\r\n      assignees {\r\n        author {\r\n          id\r\n          name\r\n        }\r\n        reviewer1 {\r\n          id\r\n          name\r\n        }\r\n        reviewer2 {\r\n          id\r\n          name\r\n        }\r\n        academicSignOff {\r\n          id\r\n          name\r\n        }\r\n        editor {\r\n          id\r\n          name\r\n        }\r\n        visualizer {\r\n          id\r\n          name\r\n        }\r\n        assetUploader {\r\n          id\r\n          name\r\n        }\r\n        assetAuthorizer {\r\n          id\r\n          name\r\n        }\r\n        proofReader {\r\n          id\r\n          name\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}",
+							"host": [
+								"{{apiHost}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search A Project From Validate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"pm.test(\"Verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify Project Name\",()=>{\r",
+									"   pm.expect(jsonData.data.multipleProjects.projects[0].name).to.eql(pm.environment.get(\"vProjectName\"));\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{cesToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  multipleProjects(filters: {page: 0, limit: 50, isMyProjects: false, searchKey: \"{{vProjectName}}\"}) {\r\n    totalCount\r\n    projects {\r\n      id\r\n      name\r\n      workflowStatus\r\n      product {\r\n        id\r\n        name\r\n      }\r\n      board {\r\n        id\r\n        name\r\n      }\r\n      standard {\r\n        id\r\n        name\r\n        displayName\r\n      }\r\n      subject {\r\n        id\r\n        name\r\n        shortName\r\n      }\r\n      block {\r\n        id\r\n        bId\r\n        title\r\n        childrenType\r\n      }\r\n      contents {\r\n        library_id\r\n        name\r\n        currentStage\r\n        type\r\n        template\r\n      }\r\n      dailyPlans {\r\n        library_id\r\n        name\r\n        currentStage\r\n        type\r\n      }\r\n      assignees {\r\n        author {\r\n          id\r\n          name\r\n        }\r\n        reviewer1 {\r\n          id\r\n          name\r\n        }\r\n        reviewer2 {\r\n          id\r\n          name\r\n        }\r\n        academicSignOff {\r\n          id\r\n          name\r\n        }\r\n        editor {\r\n          id\r\n          name\r\n        }\r\n        visualizer {\r\n          id\r\n          name\r\n        }\r\n        assetUploader {\r\n          id\r\n          name\r\n        }\r\n        assetAuthorizer {\r\n          id\r\n          name\r\n        }\r\n        proofReader {\r\n          id\r\n          name\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}",
+							"host": [
+								"{{apiHost}}"
 							]
 						}
 					},

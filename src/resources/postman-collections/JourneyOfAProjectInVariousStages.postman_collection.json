@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "478c3280-2814-434c-9271-bc9a6ff91520",
-		"name": "Journey of a project in various stages",
+		"name": "JourneyOfAProjectInVariousStages",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -55,16 +55,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/login",
-							"protocol": "https",
+							"raw": "{{loginURL}}",
 							"host": [
-								"accounts-api",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"login"
+								"{{loginURL}}"
 							]
 						}
 					},
@@ -110,7 +103,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"email\":\"kaushik.sundar+automator@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"library.xseeddigital.info\"\r\n}",
+							"raw": "{\r\n\"email\":\"kaushik.sundar+automator@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"ces.edpulse.info\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -118,16 +111,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/login",
-							"protocol": "https",
+							"raw": "{{loginURL}}",
 							"host": [
-								"accounts-api",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"login"
+								"{{loginURL}}"
 							]
 						}
 					},
@@ -179,15 +165,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -201,19 +181,19 @@
 							"script": {
 								"exec": [
 									"\r",
-									"// var boardList = pm.response.json().data.boards\r",
-									"// for(i = 0; i < boardList.length; i++) {\r",
-									"//     if (boardList[i].name == \"XSEED One India\") {\r",
-									"//         pm.environment.set(\"boardID\", boardList[i].id)\r",
-									"//         pm.environment.set(\"boardName\", boardList[i].name)\r",
-									"//     }\r",
-									"// }\r",
+									"var boardList = pm.response.json().data.boards\r",
+									"for(i = 0; i < boardList.length; i++) {\r",
+									"    if (boardList[i].name == \"Philippines\") {\r",
+									"        pm.environment.set(\"boardID\", boardList[i].id)\r",
+									"        pm.environment.set(\"boardName\", boardList[i].name)\r",
+									"    }\r",
+									"}\r",
 									"pm.test(\"verify 200 status code\",()=>{\r",
 									"    pm.response.to.be.ok;\r",
 									"    pm.expect(pm.response.code).to.eql(200);\r",
 									"});\r",
-									" pm.environment.set(\"boardName\", \"Test XSEED One India\");\r",
-									" pm.environment.set(\"boardID\", \"74\");"
+									"//  pm.environment.set(\"boardName\", \"Test XSEED One India\");\r",
+									"//  pm.environment.set(\"boardID\", \"74\");"
 								],
 								"type": "text/javascript"
 							}
@@ -236,15 +216,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -260,7 +234,7 @@
 									"\r",
 									"var productList = pm.response.json().data.products\r",
 									"for(i = 0; i < productList.length; i++) {\r",
-									"    if (productList[i].name == \"XSEED One\") {\r",
+									"    if (productList[i].name == \"Prime\") {\r",
 									"        pm.environment.set(\"productID\", productList[i].id)    \r",
 									"    }\r",
 									"}\r",
@@ -291,15 +265,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -315,7 +283,7 @@
 									"\r",
 									"var standardList = pm.response.json().data.standards\r",
 									"for(i = 0; i < standardList.length; i++) {\r",
-									"    if (standardList[i].name == \"1\") {\r",
+									"    if (standardList[i].name == \"3\") {\r",
 									"        pm.environment.set(\"standardID\", standardList[i].id)    \r",
 									"    }\r",
 									"}\r",
@@ -352,15 +320,67 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Block Map",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"jblockMapId\",jsonData.data.createBlockMap.id);\r",
+									"\r",
+									"pm.test(\"Verify Created Block Map\",()=>{\r",
+									"    pm.expect(jsonData.data.createBlockMap.id).to.eql(pm.environment.get(\"jblockMapId\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"postman.setEnvironmentVariable(\"jBmName\",\"BlockMapTest_\"+Date.now());\r",
+									"postman.setEnvironmentVariable(\"jBId\",\"TTCBEN\"+Date.now());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  createBlockMap(blockMap: {name: \"{{jBmName}}\", productId: {{productID}}, boardId: {{boardID}}, subjectId: {{subjectID}}, standardId: {{standardID}}}) {\r\n    id\r\n    name\r\n    product {\r\n      id\r\n      name\r\n    }\r\n    board {\r\n      id\r\n      name\r\n    }\r\n    subject {\r\n      id\r\n      name\r\n      shortName\r\n    }\r\n    standard {\r\n      id\r\n      name\r\n      displayName\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}",
+							"host": [
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -390,9 +410,9 @@
 								"exec": [
 									"pm.environment.set(\"jBlockTitle\",\"JourneyBlockTitle_\"+Date.now());\r",
 									"postman.setEnvironmentVariable(\"jBId\",\"TTCBEN\"+Date.now());\r",
-									"pm.environment.set(\"boardName\", \"Test XSEED One India\");\r",
+									"//pm.environment.set(\"boardName\", \"Test XSEED One India\");\r",
 									"//pm.environment.set(\"boardID\", \"74\");\r",
-									"pm.environment.set(\"blockMapId\",\"298\");"
+									"//pm.environment.set(\"blockMapId\",\"298\");"
 								],
 								"type": "text/javascript"
 							}
@@ -415,15 +435,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -439,17 +453,22 @@
 									"var jsonData = JSON.parse(responseBody);\r",
 									"\r",
 									"//postman.setEnvironmentVariable(\"jBlockSeqId\", (jsonData.data.blockMap.blocks.length +1));\r",
-									"if(jsonData.data.blockMap.blocks[0].displaySequence==(null)){\r",
+									"\r",
+									"if(jsonData.data.blockMap.blocks.length<1){\r",
 									"    postman.setEnvironmentVariable(\"jBlockSeqId\",jsonData.data.blockMap.blocks.length+1);\r",
 									"}\r",
 									"else{\r",
-									"    var j=0;\r",
-									"    for(j=0;j<jsonData.data.blockMap.blocks.length;j++){\r",
-									"    var disSeq=jsonData.data.blockMap.blocks[j].displaySequence;\r",
+									"    if(jsonData.data.blockMap.blocks[0].displaySequence==(null)){\r",
+									"        postman.setEnvironmentVariable(\"jBlockSeqId\",jsonData.data.blockMap.blocks.length+1);\r",
 									"    }\r",
-									"    pm.environment.set(\"jBlockSeqId\",disSeq+1);  \r",
+									"    else{\r",
+									"        var j=0;\r",
+									"        for(j=0;j<jsonData.data.blockMap.blocks.length;j++){\r",
+									"            var disSeq=jsonData.data.blockMap.blocks[j].displaySequence;\r",
+									"        }\r",
+									"        pm.environment.set(\"jBlockSeqId\",disSeq+1);  \r",
+									"    }\r",
 									"}\r",
-									"\r",
 									"//console.info(jsonData.data.blockMap.blocks.length +1);\r",
 									"\r",
 									"pm.test(\"verify 200 status code\",()=>{\r",
@@ -474,19 +493,13 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "query($id:ID!){\r\n  blockMap(id:$id){\r\n    blocks{\r\n      displaySequence\r\n    }\r\n  }\r\n}",
-								"variables": "{\r\n    \"id\":{{blockMapId}}\r\n}"
+								"variables": "{\r\n    \"id\":{{jblockMapId}}\r\n}"
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -506,7 +519,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"verify Liked Block Map Id\",()=>{\r",
-									"    pm.expect(jsonData.data.linkBlockToBlockMap.blockMapId).to.eql(pm.environment.get(\"blockMapId\"));\r",
+									"    pm.expect(jsonData.data.linkBlockToBlockMap.blockMapId).to.eql(pm.environment.get(\"jblockMapId\"));\r",
 									"});\r",
 									"\r",
 									"pm.test(\"verify Liked Block Id\",()=>{\r",
@@ -523,20 +536,14 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  linkBlockToBlockMap(data: {blockMapId: {{blockMapId}}, blockId: {{jBlockId}}, sequence: {{jBlockSeqId}}, displaySequence: {{jBlockSeqId}}, quarter: 1}) {\r\n    sequence\r\n    displaySequence\r\n    blockId\r\n    blockMapId\r\n    quarter\r\n  }\r\n}",
+								"query": "mutation {\r\n  linkBlockToBlockMap(data: {blockMapId: {{jblockMapId}}, blockId: {{jBlockId}}, sequence: {{jBlockSeqId}}, displaySequence: {{jBlockSeqId}}, quarter: 1}) {\r\n    sequence\r\n    displaySequence\r\n    blockId\r\n    blockMapId\r\n    quarter\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -600,15 +607,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -651,15 +652,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -708,15 +703,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -728,7 +717,7 @@
 			"name": "CES",
 			"item": [
 				{
-					"name": "Get Available Block Copy",
+					"name": "Get Available Block",
 					"event": [
 						{
 							"listen": "test",
@@ -769,15 +758,604 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
+							"raw": "{{apiHost}}",
+							"host": [
+								"{{apiHost}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Author Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"authorToken\", jsonData.token);\r",
+									"const responseJSON=pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verifying Login\",()=>{\r",
+									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "user_platform",
+								"value": "web",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\":\"kaushik.sundar+automator@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"ces.edpulse.info\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{loginURL}}",
+							"host": [
+								"{{loginURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Author Login Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"pm.environment.set(\"authorLoginId\",jsonData.data.id);\r",
+									"\r",
+									"pm.test(\"Verify 200 Status Code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "path",
+								"value": "/api/verifyToken",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "xs-auth-token",
+								"value": "{{authorToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://accounts-api.edpulse.info/api/verifyToken",
 							"protocol": "https",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
+								"accounts-api",
+								"edpulse",
 								"info"
 							],
 							"path": [
-								"graphql"
+								"api",
+								"verifyToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "First Reviewer Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"firstReviewerToken\", jsonData.token);\r",
+									"const responseJSON=pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verifying Login\",()=>{\r",
+									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "user_platform",
+								"value": "web",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\":\"kaushik.sundar+automator1@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"ces.edpulse.info\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{loginURL}}",
+							"host": [
+								"{{loginURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify First Reviewer Login Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"pm.environment.set(\"firstReviewerLoginId\",jsonData.data.id);\r",
+									"\r",
+									"pm.test(\"Verify 200 Status Code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "path",
+								"value": "/api/verifyToken",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "xs-auth-token",
+								"value": "{{firstReviewerToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://accounts-api.edpulse.info/api/verifyToken",
+							"protocol": "https",
+							"host": [
+								"accounts-api",
+								"edpulse",
+								"info"
+							],
+							"path": [
+								"api",
+								"verifyToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Second Reviewer Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"secondReviewerToken\", jsonData.token);\r",
+									"const responseJSON=pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verifying Login\",()=>{\r",
+									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "user_platform",
+								"value": "web",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\":\"kaushik.sundar+automator2@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"ces.edpulse.info\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{loginURL}}",
+							"host": [
+								"{{loginURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Second Reviewer Login Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"pm.environment.set(\"secondReviewerLoginId\",jsonData.data.id);\r",
+									"\r",
+									"pm.test(\"Verify 200 Status Code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "path",
+								"value": "/api/verifyToken",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "xs-auth-token",
+								"value": "{{secondReviewerToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://accounts-api.edpulse.info/api/verifyToken",
+							"protocol": "https",
+							"host": [
+								"accounts-api",
+								"edpulse",
+								"info"
+							],
+							"path": [
+								"api",
+								"verifyToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editor Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"editorToken\", jsonData.token);\r",
+									"const responseJSON=pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verifying Login\",()=>{\r",
+									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "user_platform",
+								"value": "web",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\":\"kaushik.sundar+automator3@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"ces.edpulse.infos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{loginURL}}",
+							"host": [
+								"{{loginURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Editor Login Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"pm.environment.set(\"editorLoginId\",jsonData.data.id);\r",
+									"\r",
+									"pm.test(\"Verify 200 Status Code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "path",
+								"value": "/api/verifyToken",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "xs-auth-token",
+								"value": "{{editorToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://accounts-api.edpulse.info/api/verifyToken",
+							"protocol": "https",
+							"host": [
+								"accounts-api",
+								"edpulse",
+								"info"
+							],
+							"path": [
+								"api",
+								"verifyToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProofReader Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"proofReaderToken\", jsonData.token);\r",
+									"const responseJSON=pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verifying Login\",()=>{\r",
+									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "user_platform",
+								"value": "web",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\":\"kaushik.sundar+automator4@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"ces.edpulse.info\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{loginURL}}",
+							"host": [
+								"{{loginURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Proofreader Login Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"pm.environment.set(\"proofReaderLoginId\",jsonData.data.id);\r",
+									"\r",
+									"pm.test(\"Verify 200 Status Code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "path",
+								"value": "/api/verifyToken",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "xs-auth-token",
+								"value": "{{proofReaderToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://accounts-api.edpulse.info/api/verifyToken",
+							"protocol": "https",
+							"host": [
+								"accounts-api",
+								"edpulse",
+								"info"
+							],
+							"path": [
+								"api",
+								"verifyToken"
 							]
 						}
 					},
@@ -803,6 +1381,9 @@
 									"pm.environment.set(\"jCreatedProjectId\",jsonData.data.createProject.id);\r",
 									"pm.environment.set(\"jAuthorId\",jsonData.data.createProject.assignees.author.id);\r",
 									"\r",
+									"postman.setEnvironmentVariable(\"jReferer\",\"https://ces.edpulse.info/\");\r",
+									"postman.setEnvironmentVariable(\"jOrigin\",\"https://ces.edpulse.info/\");\r",
+									"\r",
 									"pm.test(\"Verify 200 Status Code\",()=>{\r",
 									"    pm.response.to.be.ok;\r",
 									"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -826,19 +1407,13 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation createProject($input: ProjectCreateInputType!) {\r\n  createProject(input: $input) {\r\n    id\r\n    name\r\n    workflowStatus\r\n    product {\r\n      id\r\n      name\r\n    }\r\n    board {\r\n      id\r\n      name\r\n    }\r\n    standard {\r\n      id\r\n      name\r\n      displayName\r\n    }\r\n    subject {\r\n      id\r\n      name\r\n    }\r\n    block {\r\n      id\r\n      bId\r\n      title\r\n      childrenType\r\n    }\r\n    contents {\r\n      id\r\n      library_id\r\n      name\r\n      type\r\n      template\r\n      currentStage\r\n    }\r\n    dailyPlans {\r\n      id\r\n      library_id\r\n      name\r\n      type\r\n      currentStage\r\n    }\r\n    assignees {\r\n      author {\r\n        id\r\n        name\r\n      }\r\n      reviewer1 {\r\n        id\r\n        name\r\n      }\r\n      reviewer2 {\r\n        id\r\n        name\r\n      }\r\n      academicSignOff {\r\n        id\r\n        name\r\n      }\r\n      editor {\r\n        id\r\n        name\r\n      }\r\n      visualizer {\r\n        id\r\n        name\r\n      }\r\n      assetUploader {\r\n        id\r\n        name\r\n      }\r\n      assetAuthorizer {\r\n        id\r\n        name\r\n      }\r\n      proofReader {\r\n        id\r\n        name\r\n      }\r\n    }\r\n  }\r\n}\r\n",
-								"variables": "{\r\n  \"input\": {\r\n    \"name\": \"{{jProjectName}}\",\r\n    \"boardId\": {{boardID}},\r\n    \"subjectId\": {{subjectID}},\r\n    \"standardId\": {{standardID}},\r\n    \"productId\": {{productID}},\r\n    \"entityId\": {{jBlockId}},\r\n    \"entityType\": \"Block\",\r\n    \"type\": \"LessonPlan\",\r\n    \"childrenEntityIds\": [\r\n      {{jCreatedLpId}}\r\n    ],\r\n    \"assignees\": {\r\n      \"author\": \"615339ab43a5ff0011f4ed64\",\r\n      \"reviewer1\": \"6156be1c025e2f00126b4d5e\",\r\n      \"reviewer2\": \"6156bf1f025e2f00126b4dae\",\r\n      \"academicSignOff\": \"skip\",\r\n      \"editor\": \r\n      \"6156bf7a025e2f00126b4de3\",\r\n      \"visualizer\": \"615339ab43a5ff0011f4ed64\",\r\n      \"assetUploader\": \"6156bf1f025e2f00126b4dae\",\r\n      \"assetAuthorizer\": \"6156be1c025e2f00126b4d5e\",\r\n      \"proofReader\": \"615339ab43a5ff0011f4ed64\"\r\n    }\r\n  }\r\n}"
+								"variables": "{\r\n  \"input\": {\r\n    \"name\": \"{{jProjectName}}\",\r\n    \"boardId\": {{boardID}},\r\n    \"subjectId\": {{subjectID}},\r\n    \"standardId\": {{standardID}},\r\n    \"productId\": {{productID}},\r\n    \"entityId\": {{jBlockId}},\r\n    \"entityType\": \"Block\",\r\n    \"type\": \"LessonPlan\",\r\n    \"childrenEntityIds\": [\r\n      {{jCreatedLpId}}\r\n    ],\r\n    \"assignees\": {\r\n      \"author\": \"{{authorLoginId}}\",\r\n      \"reviewer1\": \"{{firstReviewerLoginId}}\",\r\n      \"reviewer2\": \"{{secondReviewerLoginId}}\",\r\n      \"academicSignOff\": \"skip\",\r\n      \"editor\": \r\n      \"{{editorLoginId}}\",\r\n      \"visualizer\": \"{{editorLoginId}}\",\r\n      \"assetUploader\": \"{{editorLoginId}}\",\r\n      \"assetAuthorizer\": \"{{editorLoginId}}\",\r\n      \"proofReader\": \"{{proofReaderLoginId}}\"\r\n    }\r\n  }\r\n}"
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -878,12 +1453,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -908,16 +1483,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -956,12 +1524,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -986,16 +1554,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1034,12 +1595,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1064,16 +1625,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1112,12 +1666,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1142,16 +1696,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1190,12 +1737,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1220,16 +1767,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1268,12 +1808,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1298,16 +1838,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1346,12 +1879,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1376,16 +1909,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1424,12 +1950,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1454,16 +1980,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1502,12 +2021,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1532,16 +2051,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1581,12 +2093,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1611,16 +2123,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1633,17 +2138,44 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
-									"\r",
-									"pm.test(\"Verify Current Stage Of Project\",()=>{\r",
-									"    pm.expect(jsonData.data.projectLessonPlanCurrentStageData.currentStage).to.eql(\"authoring1Stage\");\r",
-									"})\r",
-									"\r",
 									"pm.test(\"verify 200 status code\",()=>{\r",
 									"    pm.response.to.be.ok;\r",
 									"    pm.expect(pm.response.code).to.eql(200);\r",
 									"});\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"var actDiscExp= jsonData.data.projectLessonPlanCurrentStageData.currentStageData.data.analysis.activity_discussion.explanations[0]._id;\r",
+									"pm.environment.set(\"actDiscExpID\", actDiscExp)\r",
 									"\r",
+									"var ActDiscInst= jsonData.data.projectLessonPlanCurrentStageData.currentStageData.data.analysis.activity_discussion.instructions[0]._id;\r",
+									"pm.environment.set(\"ActDiscInstID\", ActDiscInst)\r",
+									"\r",
+									"var genDiscExp= jsonData.data.projectLessonPlanCurrentStageData.currentStageData.data.analysis.generalized_discussion.explanations[0]._id;\r",
+									"pm.environment.set(\"genDiscExpID\", genDiscExp)\r",
+									"\r",
+									"var genDiscInst= jsonData.data.projectLessonPlanCurrentStageData.currentStageData.data.analysis.generalized_discussion.instructions[0]._id;\r",
+									"pm.environment.set(\"genDiscInstID\", genDiscInst)\r",
+									"\r",
+									"var highOrdThiExp= jsonData.data.projectLessonPlanCurrentStageData.currentStageData.data.analysis.higher_order_thinking.explanations[0]._id;\r",
+									"pm.environment.set(\"highOrdThiExpID\", highOrdThiExp)\r",
+									"\r",
+									"var highOrdThiInst= jsonData.data.projectLessonPlanCurrentStageData.currentStageData.data.analysis.higher_order_thinking.instructions[0]._id;\r",
+									"pm.environment.set(\"highOrdThiInstID\", highOrdThiInst)\r",
+									"\r",
+									"var csdActionIns=jsonData.data.projectLessonPlanCurrentStageData.currentStageData.data.action.instructions[0]._id;\r",
+									"pm.environment.set(\"curStageActIns\", csdActionIns);\r",
+									"\r",
+									"var csdKey=jsonData.data.projectLessonPlanCurrentStageData.currentStageData.data.keywords[0]._id;\r",
+									"pm.environment.set(\"curStageKeyword\", csdKey);\r",
+									"\r",
+									"var csdResId=jsonData.data.projectLessonPlanCurrentStageData.currentStageData.data._id;\r",
+									"pm.environment.set(\"curStageRefId\", csdResId);\r",
+									"\r",
+									"var csdAimRes=jsonData.data.projectLessonPlanCurrentStageData.currentStageData.data.aim.resources[0]._id;\r",
+									"pm.environment.set(\"curStageAimRes\", csdAimRes);\r",
+									"\r",
+									"pm.test(\"Verify Current Stage Of Project\",()=>{\r",
+									"    pm.expect(jsonData.data.projectLessonPlanCurrentStageData.currentStage).to.eql(\"authoring1Stage\");\r",
+									"})\r",
 									"\r",
 									"\r",
 									""
@@ -1669,22 +2201,16 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Save Project LP",
+					"name": "Save  ProjectLP",
 					"event": [
 						{
 							"listen": "test",
@@ -1692,25 +2218,20 @@
 								"exec": [
 									"var jsonData=JSON.parse(responseBody);\r",
 									"let actDisExpDesBrTxt=jsonData.data.saveProjectLessonPlanStageData.analysis.activity_discussion.explanations[0].brief.text;\r",
-									"\r",
-									"pm.test(\"Verify 200 Status Code\",()=>{\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.expect(pm.response.code).to.eql(200);\r",
-									"});\r",
-									"\r",
 									"pm.test(\"Verify Activity Discusson Explanation Description brief text \",()=>{\r",
 									"    const sp=actDisExpDesBrTxt.split('\"\"','\"');\r",
 									"    for(var i=0;i<sp.length;i++){\r",
-									"    if(sp[i]==(\"This is ABCD image\")){\r",
-									"    pm.expect(actDisExpDes).to.eql(\"This is ABCD image\");\r",
-									"    }\r",
-									"  }\r",
+									"        if(sp[i]==(\"This is ABCD image\")){\r",
+									"            pm.expect(actDisExpDes).to.eql(\"This is ABCD image\");\r",
+									"        }\r",
+									"    }  \r",
 									"});\r",
 									"\r",
 									"let actDisExpDeskeyQues=jsonData.data.saveProjectLessonPlanStageData.analysis.activity_discussion.key_question;\r",
 									"pm.test(\"Verify Activity Discusson Explanation Description Key Questoin  \",()=>{\r",
 									"    pm.expect(actDisExpDeskeyQues).contains(\"this is an activity discussion key questions.\");\r",
 									"});\r",
+									"\r",
 									"\r",
 									"let actDisExpDeskeyQuescGuide=jsonData.data.saveProjectLessonPlanStageData.analysis.activity_discussion.key_question_guide;\r",
 									"pm.test(\"Verify Activity Discusson Explanation Description Key Questoin Guide \",()=>{\r",
@@ -1725,13 +2246,11 @@
 									"let actTeacherTip=jsonData.data.saveProjectLessonPlanStageData.analysis.activity_discussion.teacher_tip;\r",
 									"pm.test(\"Verify Activity Discussion Teacher Tip \",()=>{\r",
 									"    pm.expect(actTeacherTip).contains(\"This is Teacher Tip\");\r",
-									"\r",
 									"});\r",
 									"\r",
 									"let genTeacherTip=jsonData.data.saveProjectLessonPlanStageData.analysis.generalized_discussion.teacher_tip;\r",
 									"pm.test(\"Verify Generalized Discussion Teacher Tip \",()=>{\r",
 									"    pm.expect(genTeacherTip).contains(\"This is a Teacher Tip\");\r",
-									"\r",
 									"});\r",
 									"\r",
 									"let higherOrdTeacherTip=jsonData.data.saveProjectLessonPlanStageData.analysis.higher_order_thinking.teacher_tip;\r",
@@ -1749,11 +2268,9 @@
 									"    pm.expect(summary).contains(\"This is an Analysis summary\");\r",
 									"});\r",
 									"\r",
-									"\r",
 									"let actSummary=jsonData.data.saveProjectLessonPlanStageData.action.summary;\r",
 									"pm.test(\"Verify action summary \",()=>{\r",
 									"    pm.expect(actSummary).contains(\"This is an Action summary\");\r",
-									"\r",
 									"});\r",
 									"\r",
 									"let classWrkSummary=jsonData.data.saveProjectLessonPlanStageData.application.summaryData.classwork;\r",
@@ -1796,12 +2313,12 @@
 									"\r",
 									"pm.test(\"Verify 3rd Title AssetId  \",()=>{\r",
 									"    pm.expect(jsonData.data.\r",
-									"saveProjectLessonPlanStageData.analysis.higher_order_thinking.explanations[0].brief.assetId).to.eql(pm.environment.get(\"thirdTitleID\"));\r",
+									"    saveProjectLessonPlanStageData.analysis.higher_order_thinking.explanations[0].brief.assetId).to.eql(pm.environment.get(\"thirdTitleID\"));\r",
 									"});\r",
 									"\r",
-									"// pm.test(\"Verify Cover Image AssetId  \",()=>{\r",
-									"//     pm.expect(jsonData.data.saveProjectLessonPlanStageData.brief.assetId).to.eql(pm.environment.get(\"coverImageDataId\"));\r",
-									"// });\r",
+									"pm.test(\"Verify Cover Image AssetId  \",()=>{\r",
+									"    pm.expect(jsonData.data.saveProjectLessonPlanStageData.brief.assetId).to.eql(pm.environment.get(\"coverImageDataId\"));\r",
+									"});\r",
 									"\r",
 									"pm.test(\"Verify content Book AssetId  \",()=>{\r",
 									"    pm.expect(jsonData.data.saveProjectLessonPlanStageData.aim.resources[0].assetId).to.eql(pm.environment.get(\"contentBookDataId\"));\r",
@@ -1847,14 +2364,6 @@
 									"pm.test(\"Verify Assessment Check Question Ansewer Text \",()=>{\r",
 									"    pm.expect(assessmentChkQuesAns).contains(\"This is the worksheet answered file\");\r",
 									"});\r",
-									"\r",
-									"pm.test(\"Verify Lesson Plan Title  \",()=>{\r",
-									"    pm.expect(jsonData.data.saveProjectLessonPlanStageData.lp_title).contains(pm.environment.get(\"jLpName\"));\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Verify Lesson Plan Description  \",()=>{\r",
-									"    pm.expect(jsonData.data.saveProjectLessonPlanStageData.lp_description).contains(pm.environment.get(\"jLpDesc\"));\r",
-									"});\r",
 									""
 								],
 								"type": "text/javascript"
@@ -1873,20 +2382,14 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation ($projectId: ID!, $lessonPlanLibraryId: ID!, $data: JSON!, $equationEditorJsonArray: [EquationEditorJsonInput]!) {\r\n  saveProjectLessonPlanStageData(projectId: $projectId, contentLibraryId: $lessonPlanLibraryId, data: $data, equationEditorJsonArray: $equationEditorJsonArray)\r\n}\r\n",
-								"variables": "{\r\n  \"lessonPlanLibraryId\": \"{{jCreatedLpId}}\",\r\n  \"projectId\": \"{{jCreatedProjectId}}\",\r\n  \"data\": {\r\n    \"analysis\": {\r\n      \"activity_discussion\": {\r\n        \"explanations\": [\r\n          {\r\n            \"_id\": \"{{actDiscExpID}}\",\r\n            \"description\": \"This is 1st Title\",\r\n            \"assetId\": \"{{firstTitleID}}\",\r\n            \"brief\": {\r\n              \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is ABCD image\\\"}]}]}\",\r\n              \"assetId\": \"{{firstTitleID}}\"\r\n            },\r\n            \"assetApproved\": true\r\n          }\r\n        ],\r\n        \"key_question\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"this is an activity discussion key questions.\\\"}]}]}\",\r\n        \"key_question_guide\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an activity discussion  key question guide\\\"}]}]}\",\r\n        \"instructions\": [\r\n          {\r\n            \"_id\": \"{{ActDiscInstID}}\",\r\n            \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an activity explanation text box\\\"}]}]}\"\r\n          }\r\n        ],\r\n        \"teacher_tip\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is Teacher Tip\\\"}]}]}\",\r\n        \"key_question_assets\": []\r\n      },\r\n      \"generalized_discussion\": {\r\n        \"explanations\": [\r\n          {\r\n            \"_id\": \"{{genDiscExpID}}\",\r\n            \"description\": \"This is the 2nd Title\",\r\n            \"assetId\": \"{{secondTitleID}}\",\r\n            \"brief\": {\r\n              \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Reading book image\\\"}]}]}\",\r\n              \"assetId\": \"{{secondTitleID}}\"\r\n            },\r\n            \"assetApproved\": true\r\n          }\r\n        ],\r\n        \"key_question\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a  generalized discussion key question\\\"}]}]}\",\r\n        \"key_question_guide\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a  generalized discussion key guide\\\"}]}]}\",\r\n        \"instructions\": [\r\n          {\r\n            \"_id\": \"{{genDiscInstID}}\",\r\n            \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a  generalized Explanation text box\\\"}]}]}\"\r\n          }\r\n        ],\r\n        \"teacher_tip\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a Teacher Tip\\\"}]}]}\",\r\n        \"key_question_assets\": []\r\n      },\r\n      \"higher_order_thinking\": {\r\n        \"explanations\": [\r\n          {\r\n            \"_id\": \"{{highOrdThiExpID}}\",\r\n            \"description\": \"This is the 3rd Title\",\r\n            \"assetId\": \"{{thirdTitleID}}\",\r\n            \"brief\": {\r\n              \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Books images\\\"}]}]}\",\r\n              \"assetId\": \"{{thirdTitleID}}\"\r\n            },\r\n            \"assetApproved\": true\r\n          }\r\n        ],\r\n        \"key_question\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a higher order thinking key question\\\"}]}]}\",\r\n        \"key_question_guide\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a higher order thinking key question guide\\\"}]}]}\",\r\n        \"instructions\": [\r\n          {\r\n            \"_id\": \"{{highOrdThiInstID}}\",\r\n            \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a higher order thinking HOTS explanation\\\"}]}]}\"\r\n          }\r\n        ],\r\n        \"teacher_tip\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the Teacher Tip\\\"}]}]}\",\r\n        \"key_question_assets\": []\r\n      },\r\n      \"types\": [\r\n        \"pair\"\r\n      ],\r\n      \"summary\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an Analysis summary\\\"}]}]}\",\r\n      \"time\": \"10 mins\",\r\n      \"type\": \"\"\r\n    },\r\n    \"action\": {\r\n      \"types\": [\r\n        \"pair\"\r\n      ],\r\n      \"summary\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an Action summary\\\"}]}]}\",\r\n      \"time\": \"15 mins\",\r\n      \"type\": \"\",\r\n      \"instructions\": [\r\n        {\r\n          \"instructionBreak\": false,\r\n          \"_id\": \"{{curStageActIns}}\",\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an action step description\\\"}]}]}\",\r\n          \"children\": [],\r\n          \"assets\": []\r\n        }\r\n      ],\r\n      \"teacher_tip\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an action teacher tip description\\\"}]}]}\"\r\n    },\r\n    \"application\": {\r\n      \"classwork\": {\r\n        \"brief\": {\r\n          \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"A B Word Practices\\\"}]}]}\",\r\n          \"assetId\": \"{{classWorkDataID}}\",\r\n          \"type\": \"image\"\r\n        },\r\n        \"description\": \"1\",\r\n        \"assetId\": \"{{classWorkDataID}}\",\r\n        \"assetApproved\": true,\r\n        \"type\": \"image\"\r\n      },\r\n      \"homework\": {\r\n        \"question\": {\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Practice of A B C D word.\\\"}]}]}\",\r\n            \"assetId\": \"{{homeWorkDataID}}\",\r\n            \"type\": \"image\"\r\n          },\r\n          \"assetId\": \"{{homeWorkDataID}}\",\r\n          \"assetApproved\": true,\r\n          \"type\": \"image\"\r\n        },\r\n        \"question_answer\": {\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Here you can find the homework answered file.\\\"}]}]}\",\r\n            \"assetId\": \"{{hmQueAnsDataID}}\",\r\n            \"type\": \"image\"\r\n          },\r\n          \"assetId\": \"{{hmQueAnsDataID}}\",\r\n          \"type\": \"image\",\r\n          \"assetApproved\": true\r\n        },\r\n        \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is homework description\\\"}]}]}\"\r\n      },\r\n      \"differentiation_tips\": {\r\n        \"need_more_help\": {\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the AB word Description.\\\"}]}]}\"\r\n        },\r\n        \"need_extra_challenge\": {\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the extra challenge description\\\"}]}]}\"\r\n        }\r\n      },\r\n      \"types\": [\r\n        \"individual\"\r\n      ],\r\n      \"summary\": \"\",\r\n      \"time\": \"10 mins\",\r\n      \"type\": \"\",\r\n      \"more_practice\": [],\r\n      \"more_practice_time\": \"7 mins\",\r\n      \"teacher_tip\": \"\",\r\n      \"summaryData\": {\r\n        \"classwork\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a Classwork\\\"}]}]}\",\r\n        \"homework\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a homework\\\"}]}]}\"\r\n      }\r\n    },\r\n    \"assessment\": {\r\n      \"grade_template\": {\r\n        \"approaching\": {\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the approach\\\"}]}]}\"\r\n        },\r\n        \"meeting\": {\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"For Meeting\\\"}]}]}\"\r\n        },\r\n        \"exceeding\": {\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"For Exceeding\\\"}]}]}\"\r\n        },\r\n        \"overall\": {\r\n          \"description\": \"\"\r\n        }\r\n      },\r\n      \"check\": {\r\n        \"question\": {\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Practice of A B C D word.\\\"}]}]}\",\r\n            \"assetId\": \"{{classWorkDataID}}\",\r\n            \"type\": \"image\"\r\n          },\r\n          \"assetId\": \"{{classWorkDataID}}\",\r\n          \"assetApproved\": true,\r\n          \"type\": \"image\"\r\n        },\r\n        \"question_answer\": {\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the worksheet answered file\\\"}]}]}\",\r\n            \"assetId\": \"{{cwQueAnsDataID}}\",\r\n            \"type\": \"image\"\r\n          },\r\n          \"assetId\": \"{{cwQueAnsDataID}}\",\r\n          \"type\": \"image\",\r\n          \"assetApproved\": true\r\n        },\r\n        \"description\": \"1\"\r\n      },\r\n      \"summary\": \"\",\r\n      \"teacher_tip\": \"\",\r\n      \"summaryData\": {\r\n        \"approaching\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is assessment approaching\\\"}]}]}\",\r\n        \"meeting\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is for Meeting\\\"}]}]}\",\r\n        \"exceeding\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is for Exceeding\\\"}]}]}\"\r\n      }\r\n    },\r\n    \"references\": [\r\n      \"Ref -1\"\r\n    ],\r\n    \"_id\": \"{{curStageRefId}}\",\r\n    \"assetId\": \"{{coverImageDataId}}\",\r\n    \"brief\": {\r\n      \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the cover image.\\\"}]}]}\",\r\n      \"assetId\": \"{{coverImageDataId}}\"\r\n    },\r\n    \"time\": \"35 mins\",\r\n    \"keywords\": [\r\n      {\r\n        \"_id\": \"{{curStageKeyword}}\",\r\n        \"keyword\": \"This is 1 keyword\",\r\n        \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is 1st keyword definition\\\"}]}]}\"\r\n      },\r\n      {\r\n        \"keyword\": \"This is 2 keyword\",\r\n        \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is 2nd keyword definition\\\"}]}]}\"\r\n      }\r\n    ],\r\n    \"aim\": {\r\n      \"summary\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an Aim Summary\\\"}]}]}\",\r\n      \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an Aim description.\\\"}]}]}\",\r\n      \"resources\": [\r\n        {\r\n          \"_id\": \"{{curStageAimRes}}\",\r\n          \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Word Book\\\"}]}]}\",\r\n          \"assetId\": \"{{contentBookDataId}}\",\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is resource image\\\"}]}]}\",\r\n            \"assetId\": \"{{contentBookDataId}}\"\r\n          },\r\n          \"assetApproved\": true\r\n        },\r\n        {\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the worksheet..\\\"}]}]}\",\r\n            \"assetId\": \"{{workSheetDataId}}\"\r\n          },\r\n          \"assetId\": \"{{workSheetDataId}}\",\r\n          \"assetApproved\": true,\r\n          \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Worksheet\\\"}]}]}\"\r\n        }\r\n      ],\r\n      \"teacher_tip\": \"\"\r\n    },\r\n    \"lp_title\": \"{{jLpName}}\",\r\n    \"lp_description\": \"{{jLpDesc}}\",\r\n    \"assetApproved\": true\r\n  },\r\n  \"equationEditorJsonArray\": []\r\n}"
+								"query": "mutation ($projectId: ID!, $lessonPlanLibraryId: ID!, $data: JSON!,         $equationEditorJsonArray: [EquationEditorJsonInput]!) {\r\n  saveProjectLessonPlanStageData(projectId: $projectId, contentLibraryId: $lessonPlanLibraryId, data: $data, equationEditorJsonArray: $equationEditorJsonArray)\r\n}\r\n",
+								"variables": "{\r\n  \"lessonPlanLibraryId\": \"{{jCreatedLpId}}\",\r\n  \"projectId\": \"{{jCreatedProjectId}}\",\r\n  \"data\": {\r\n    \"analysis\": {\r\n      \"activity_discussion\": {\r\n        \"explanations\": [\r\n          {\r\n            \"_id\": \"{{actDiscExpID}}\",\r\n            \"description\": \"This is 1st Title\",\r\n            \"assetId\": \"{{firstTitleID}}\",\r\n            \"brief\": {\r\n              \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is ABCD image\\\"}]}]}\",\r\n              \"assetId\": \"{{firstTitleID}}\"\r\n            },\r\n            \"assetApproved\": true\r\n          }\r\n        ],\r\n        \"key_question\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"this is an activity discussion key questions.\\\"}]}]}\",\r\n        \"key_question_guide\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an activity discussion  key question guide\\\"}]}]}\",\r\n        \"instructions\": [\r\n          {\r\n            \"_id\": \"{{ActDiscInstID}}\",\r\n            \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an activity explanation text box\\\"}]}]}\"\r\n          }\r\n        ],\r\n        \"teacher_tip\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is Teacher Tip\\\"}]}]}\",\r\n        \"key_question_assets\": []\r\n      },\r\n      \"generalized_discussion\": {\r\n        \"explanations\": [\r\n          {\r\n            \"_id\": \"{{genDiscExpID}}\",\r\n            \"description\": \"This is the 2nd Title\",\r\n            \"assetId\": \"{{secondTitleID}}\",\r\n            \"brief\": {\r\n              \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Reading book image\\\"}]}]}\",\r\n              \"assetId\": \"{{secondTitleID}}\"\r\n            },\r\n            \"assetApproved\": true\r\n          }\r\n        ],\r\n        \"key_question\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a  generalized discussion key question\\\"}]}]}\",\r\n        \"key_question_guide\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a  generalized discussion key guide\\\"}]}]}\",\r\n        \"instructions\": [\r\n          {\r\n            \"_id\": \"{{genDiscInstID}}\",\r\n            \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a  generalized Explanation text box\\\"}]}]}\"\r\n          }\r\n        ],\r\n        \"teacher_tip\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a Teacher Tip\\\"}]}]}\",\r\n        \"key_question_assets\": []\r\n      },\r\n      \"higher_order_thinking\": {\r\n        \"explanations\": [\r\n          {\r\n            \"_id\": \"{{highOrdThiExpID}}\",\r\n            \"description\": \"This is the 3rd Title\",\r\n            \"assetId\": \"{{thirdTitleID}}\",\r\n            \"brief\": {\r\n              \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Books images\\\"}]}]}\",\r\n              \"assetId\": \"{{thirdTitleID}}\"\r\n            },\r\n            \"assetApproved\": true\r\n          }\r\n        ],\r\n        \"key_question\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a higher order thinking key question\\\"}]}]}\",\r\n        \"key_question_guide\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a higher order thinking key question guide\\\"}]}]}\",\r\n        \"instructions\": [\r\n          {\r\n            \"_id\": \"{{highOrdThiInstID}}\",\r\n            \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a higher order thinking HOTS explanation\\\"}]}]}\"\r\n          }\r\n        ],\r\n        \"teacher_tip\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the Teacher Tip\\\"}]}]}\",\r\n        \"key_question_assets\": []\r\n      },\r\n      \"types\": [\r\n        \"pair\"\r\n      ],\r\n      \"summary\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an Analysis summary\\\"}]}]}\",\r\n      \"time\": \"10 mins\",\r\n      \"type\": \"\"\r\n    },\r\n    \"action\": {\r\n      \"types\": [\r\n        \"pair\"\r\n      ],\r\n      \"summary\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an Action summary\\\"}]}]}\",\r\n      \"time\": \"15 mins\",\r\n      \"type\": \"\",\r\n      \"instructions\": [\r\n        {\r\n          \"instructionBreak\": false,\r\n          \"_id\": \"6139acaa84bde30011c9a75b\",\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an action step description\\\"}]}]}\",\r\n          \"children\": [],\r\n          \"assets\": []\r\n        }\r\n      ],\r\n      \"teacher_tip\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an action teacher tip description\\\"}]}]}\"\r\n    },\r\n    \"application\": {\r\n      \"classwork\": {\r\n        \"brief\": {\r\n          \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"A B Word Practices\\\"}]}]}\",\r\n          \"assetId\": \"{{classWorkDataID}}\",\r\n          \"type\": \"image\"\r\n        },\r\n        \"description\": \"1\",\r\n        \"assetId\": \"{{classWorkDataID}}\",\r\n        \"assetApproved\": true,\r\n        \"type\": \"image\"\r\n      },\r\n      \"homework\": {\r\n        \"question\": {\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Practice of A B C D word.\\\"}]}]}\",\r\n            \"assetId\": \"{{homeWorkDataID}}\",\r\n            \"type\": \"image\"\r\n          },\r\n          \"assetId\": \"{{homeWorkDataID}}\",\r\n          \"assetApproved\": true,\r\n          \"type\": \"image\"\r\n        },\r\n        \"question_answer\": {\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Here you can find the homework answered file.\\\"}]}]}\",\r\n            \"assetId\": \"{{hmQueAnsDataID}}\",\r\n            \"type\": \"image\"\r\n          },\r\n          \"assetId\": \"{{hmQueAnsDataID}}\",\r\n          \"type\": \"image\",\r\n          \"assetApproved\": true\r\n        },\r\n        \"description\": \"1\"\r\n      },\r\n      \"differentiation_tips\": {\r\n        \"need_more_help\": {\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the AB word Description.\\\"}]}]}\"\r\n        },\r\n        \"need_extra_challenge\": {\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the extra challenge description\\\"}]}]}\"\r\n        }\r\n      },\r\n      \"types\": [\r\n        \"individual\"\r\n      ],\r\n      \"summary\": \"\",\r\n      \"time\": \"10 mins\",\r\n      \"type\": \"\",\r\n      \"more_practice\": [],\r\n      \"more_practice_time\": \"7 mins\",\r\n      \"teacher_tip\": \"\",\r\n      \"summaryData\": {\r\n        \"classwork\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a Classwork\\\"}]}]}\",\r\n        \"homework\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is a homework\\\"}]}]}\"\r\n      }\r\n    },\r\n    \"assessment\": {\r\n      \"grade_template\": {\r\n        \"approaching\": {\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the approach\\\"}]}]}\"\r\n        },\r\n        \"meeting\": {\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"For Meeting\\\"}]}]}\"\r\n        },\r\n        \"exceeding\": {\r\n          \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"For Exceeding\\\"}]}]}\"\r\n        },\r\n        \"overall\": {\r\n          \"description\": \"\"\r\n        }\r\n      },\r\n      \"check\": {\r\n        \"question\": {\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Practice of A B C D word.\\\"}]}]}\",\r\n            \"assetId\": \"{{classWorkDataID}}\",\r\n            \"type\": \"image\"\r\n          },\r\n          \"assetId\": \"{{classWorkDataID}}\",\r\n          \"assetApproved\": true,\r\n          \"type\": \"image\"\r\n        },\r\n        \"question_answer\": {\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the worksheet answered file\\\"}]}]}\",\r\n            \"assetId\": \"{{cwQueAnsDataID}}\",\r\n            \"type\": \"image\"\r\n          },\r\n          \"assetId\": \"{{cwQueAnsDataID}}\",\r\n          \"type\": \"image\",\r\n          \"assetApproved\": true\r\n        },\r\n        \"description\": \"1\"\r\n      },\r\n      \"summary\": \"\",\r\n      \"teacher_tip\": \"\",\r\n      \"summaryData\": {\r\n        \"approaching\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is assessment approaching\\\"}]}]}\",\r\n        \"meeting\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is for Meeting\\\"}]}]}\",\r\n        \"exceeding\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is for Exceeding\\\"}]}]}\"\r\n      }\r\n    },\r\n    \"references\": [\r\n      \"Ref -1\"\r\n    ],\r\n    \"_id\": \"6139acaa84bde30011c9a758\",\r\n    \"assetId\": \"{{coverImageDataId}}\",\r\n    \"brief\": {\r\n      \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the cover image.\\\"}]}]}\",\r\n      \"assetId\": \"{{coverImageDataId}}\"\r\n    },\r\n    \"time\": \"35 mins\",\r\n    \"keywords\": [\r\n      {\r\n        \"_id\": \"6139acaa84bde30011c9a759\",\r\n        \"keyword\": \"This is 1 keyword\",\r\n        \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is 1st keyword definition\\\"}]}]}\"\r\n      },\r\n      {\r\n        \"keyword\": \"This is 2 keyword\",\r\n        \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is 2nd keyword definition\\\"}]}]}\"\r\n      }\r\n    ],\r\n    \"aim\": {\r\n      \"summary\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an Aim Summary\\\"}]}]}\",\r\n      \"description\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is an Aim description.\\\"}]}]}\",\r\n      \"resources\": [\r\n        {\r\n          \"_id\": \"6139acaa84bde30011c9a75a\",\r\n          \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Word Book\\\"}]}]}\",\r\n          \"assetId\": \"{{contentBookDataId}}\",\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is resource image\\\"}]}]}\",\r\n            \"assetId\": \"{{contentBookDataId}}\"\r\n          },\r\n          \"assetApproved\": true\r\n        },\r\n        {\r\n          \"brief\": {\r\n            \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"This is the worksheet..\\\"}]}]}\",\r\n            \"assetId\": \"{{workSheetDataId}}\"\r\n          },\r\n          \"assetId\": \"{{workSheetDataId}}\",\r\n          \"assetApproved\": true,\r\n          \"text\": \"{\\\"type\\\":\\\"doc\\\",\\\"content\\\":[{\\\"type\\\":\\\"paragraph\\\",\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Worksheet\\\"}]}]}\"\r\n        }\r\n      ],\r\n      \"teacher_tip\": \"\"\r\n    },\r\n    \"lp_title\": \"{{jLpName}}\",\r\n    \"lp_description\": \"{{jLpDesc}}\",\r\n    \"assetApproved\": true\r\n  },\r\n  \"equationEditorJsonArray\": []\r\n}"
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -1930,15 +2433,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -1991,15 +2488,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2048,78 +2539,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "First Reviewer Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
-									"postman.setEnvironmentVariable(\"firstReviewerToken\", jsonData.token);\r",
-									"const responseJSON=pm.response.json();\r",
-									"\r",
-									"pm.test(\"Verifying Login\",()=>{\r",
-									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"verify 200 status code\",()=>{\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "user_platform",
-								"value": "web",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"email\":\"kaushik.sundar+automator3@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"library.xseeddigital.info\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/login",
-							"protocol": "https",
-							"host": [
-								"accounts-api",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"login"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2163,15 +2585,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2215,15 +2631,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2272,78 +2682,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Second Reviewer Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
-									"postman.setEnvironmentVariable(\"secondReviewerToken\", jsonData.token);\r",
-									"const responseJSON=pm.response.json();\r",
-									"\r",
-									"pm.test(\"Verifying Login\",()=>{\r",
-									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"verify 200 status code\",()=>{\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "user_platform",
-								"value": "web",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"email\":\"kaushik.sundar+automator2@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"library.xseeddigital.info\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/login",
-							"protocol": "https",
-							"host": [
-								"accounts-api",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"login"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2387,15 +2728,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2439,15 +2774,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2496,78 +2825,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Second Author Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
-									"postman.setEnvironmentVariable(\"secondAuthorToken\", jsonData.token);\r",
-									"const responseJSON=pm.response.json();\r",
-									"\r",
-									"pm.test(\"Verifying Login\",()=>{\r",
-									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"verify 200 status code\",()=>{\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "user_platform",
-								"value": "web",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"email\":\"kaushik.sundar+automator@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"library.xseeddigital.info\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/login",
-							"protocol": "https",
-							"host": [
-								"accounts-api",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"login"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2599,7 +2859,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{secondAuthorToken}}",
+								"value": "Bearer {{authorToken}}",
 								"type": "text"
 							}
 						],
@@ -2611,15 +2871,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2652,7 +2906,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{secondAuthorToken}}",
+								"value": "Bearer {{authorToken}}",
 								"type": "text"
 							}
 						],
@@ -2664,15 +2918,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2709,7 +2957,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{cesToken}}",
+								"value": "Bearer {{authorToken}}",
 								"type": "text"
 							}
 						],
@@ -2721,78 +2969,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editor Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
-									"postman.setEnvironmentVariable(\"editorToken\", jsonData.token);\r",
-									"const responseJSON=pm.response.json();\r",
-									"\r",
-									"pm.test(\"Verifying Login\",()=>{\r",
-									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"verify 200 status code\",()=>{\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "user_platform",
-								"value": "web",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"email\":\"kaushik.sundar+automator4@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"library.xseeddigital.info\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/login",
-							"protocol": "https",
-							"host": [
-								"accounts-api",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"login"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2836,15 +3015,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2889,15 +3062,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2946,78 +3113,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "ProofReader Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
-									"postman.setEnvironmentVariable(\"proofReaderToken\", jsonData.token);\r",
-									"const responseJSON=pm.response.json();\r",
-									"\r",
-									"pm.test(\"Verifying Login\",()=>{\r",
-									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"verify 200 status code\",()=>{\r",
-									"    pm.response.to.be.ok;\r",
-									"    pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "user_platform",
-								"value": "web",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"email\":\"kaushik.sundar+automator@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"library.xseeddigital.info\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/login",
-							"protocol": "https",
-							"host": [
-								"accounts-api",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"login"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -3061,15 +3159,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -3114,15 +3206,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -3171,15 +3257,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -3224,15 +3304,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},

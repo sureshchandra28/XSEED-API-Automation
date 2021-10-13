@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "e82063c2-8b1b-48e5-8e96-22786a575b5b",
-		"name": "Create a Standard Lesson Plan Copy",
+		"name": "CreateAStandardLessonPlan",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -18,7 +18,6 @@
 									"var jsonData = JSON.parse(responseBody);\r",
 									"postman.setEnvironmentVariable(\"token\", jsonData.token);\r",
 									"const responseJSON=pm.response.json();\r",
-									"pm.environment.set(\"blockMapId\",298);\r",
 									"//pm.environment.set(\"bID\",\"TTCBEN1632032834700\");\r",
 									"pm.test(\"Verifying Login\",()=>{\r",
 									"    pm.expect(responseJSON.message).to.eql(\"Logged in\");\r",
@@ -44,7 +43,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"email\":\"kaushik.sundar+automator1@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"library.xseeddigital.info\"\r\n}",
+							"raw": "{\r\n\"email\":\"kaushik.sundar+automator1@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"library.edpulse.info\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -52,16 +51,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/login",
-							"protocol": "https",
+							"raw": "{{loginURL}}",
 							"host": [
-								"accounts-api",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"login"
+								"{{loginURL}}"
 							]
 						}
 					},
@@ -107,7 +99,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"email\":\"kaushik.sundar+automator@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"library.xseeddigital.info\"\r\n}",
+							"raw": "{\r\n\"email\":\"kaushik.sundar+automator@xseededucation.com\",\r\n\"password\":\"xseed123\",\r\n\"referrer\":\"ces.edpulse.info\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -115,16 +107,72 @@
 							}
 						},
 						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/login",
+							"raw": "{{loginURL}}",
+							"host": [
+								"{{loginURL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify CES Login Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"pm.environment.set(\"stUserLoginId\",jsonData.data.id);\r",
+									"\r",
+									"pm.test(\"Verify 200 Status Code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "path",
+								"value": "/api/verifyToken",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "xs-auth-token",
+								"value": "{{cesToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://accounts-api.edpulse.info/api/verifyToken",
 							"protocol": "https",
 							"host": [
 								"accounts-api",
-								"xseeddigital",
+								"edpulse",
 								"info"
 							],
 							"path": [
 								"api",
-								"login"
+								"verifyToken"
 							]
 						}
 					},
@@ -176,15 +224,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -198,19 +240,19 @@
 							"script": {
 								"exec": [
 									"\r",
-									"// var boardList = pm.response.json().data.boards\r",
-									"// for(i = 0; i < boardList.length; i++) {\r",
-									"//     if (boardList[i].name == \"XSEED One India\") {\r",
-									"//         pm.environment.set(\"boardID\", boardList[i].id)\r",
-									"//         pm.environment.set(\"boardName\", boardList[i].name)\r",
-									"//     }\r",
-									"// }\r",
-									"// pm.test(\"verify 200 status code\",()=>{\r",
-									"//     pm.response.to.be.ok;\r",
-									"//     pm.expect(pm.response.code).to.eql(200);\r",
-									"// });\r",
-									" pm.environment.set(\"boardName\", \"Test XSEED One India\");\r",
-									" pm.environment.set(\"boardID\", \"74\");"
+									"var boardList = pm.response.json().data.boards\r",
+									"for(i = 0; i < boardList.length; i++) {\r",
+									"    if (boardList[i].name == \"Philippines\") {\r",
+									"        pm.environment.set(\"boardID\", boardList[i].id)\r",
+									"        pm.environment.set(\"boardName\", boardList[i].name)\r",
+									"    }\r",
+									"}\r",
+									"pm.test(\"verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"//  pm.environment.set(\"boardName\", \"Test XSEED One India\");\r",
+									"//  pm.environment.set(\"boardID\", \"74\");"
 								],
 								"type": "text/javascript"
 							}
@@ -228,20 +270,14 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query{\r\n  boards{\r\n        id\r\n        name\r\n    }\r\n}\r\n\r\n  ",
+								"query": "query{\r\n  boards{\r\n        id\r\n        name\r\n    }\r\n}\r\n  ",
 								"variables": ""
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -257,7 +293,7 @@
 									"\r",
 									"var productList = pm.response.json().data.products\r",
 									"for(i = 0; i < productList.length; i++) {\r",
-									"    if (productList[i].name == \"XSEED One\") {\r",
+									"    if (productList[i].name == \"Prime\") {\r",
 									"        pm.environment.set(\"productID\", productList[i].id)    \r",
 									"    }\r",
 									"}\r",
@@ -288,15 +324,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -349,15 +379,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -370,18 +394,18 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// var jsonData=JSON.parse(responseBody);\r",
-									"// postman.setEnvironmentVariable(\"blockMapId\",jsonData.data.createBlockMap.id);\r",
-									"// pm.environment.set(\"stAlBlockTitle\",\"standalone Block Test_\"+Date.now());\r",
+									"var jsonData=JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"blockMapId\",jsonData.data.createBlockMap.id);\r",
+									"pm.environment.set(\"stAlBlockTitle\",\"standalone Block Test_\"+Date.now());\r",
 									"\r",
-									"// pm.test(\"Verify Created Block Map\",()=>{\r",
-									"//     pm.expect(jsonData.data.createBlockMap.id).to.eql(pm.environment.get(\"blockMapId\"));\r",
-									"// });\r",
+									"pm.test(\"Verify Created Block Map\",()=>{\r",
+									"    pm.expect(jsonData.data.createBlockMap.id).to.eql(pm.environment.get(\"blockMapId\"));\r",
+									"});\r",
 									"\r",
-									"// pm.test(\"verify 200 status code\",()=>{\r",
-									"//     pm.response.to.be.ok;\r",
-									"//     pm.expect(pm.response.code).to.eql(200);\r",
-									"// });"
+									"pm.test(\"verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -390,8 +414,8 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"// postman.setEnvironmentVariable(\"bmName\",\"BlockMapTest_\"+Date.now());\r",
-									"// postman.setEnvironmentVariable(\"bID\",\"TTCBEN\"+Date.now());"
+									"postman.setEnvironmentVariable(\"bmName\",\"BlockMapTest_\"+Date.now());\r",
+									"postman.setEnvironmentVariable(\"bID\",\"TTCBEN\"+Date.now());"
 								],
 								"type": "text/javascript"
 							}
@@ -409,20 +433,14 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "# mutation {\r\n#   createBlockMap(blockMap: {name: \"{{bmName}}\", productId: {{productID}}, boardId: {{boardID}}, subjectId: {{subjectID}}, standardId: {{standardID}}}) {\r\n#     id\r\n#     name\r\n#     product {\r\n#       id\r\n#       name\r\n#     }\r\n#     board {\r\n#       id\r\n#       name\r\n#     }\r\n#     subject {\r\n#       id\r\n#       name\r\n#       shortName\r\n#     }\r\n#     standard {\r\n#       id\r\n#       name\r\n#       displayName\r\n#     }\r\n#   }\r\n# }",
+								"query": "mutation {\r\n  createBlockMap(blockMap: {name: \"{{bmName}}\", productId: {{productID}}, boardId: {{boardID}}, subjectId: {{subjectID}}, standardId: {{standardID}}}) {\r\n    id\r\n    name\r\n    product {\r\n      id\r\n      name\r\n    }\r\n    board {\r\n      id\r\n      name\r\n    }\r\n    subject {\r\n      id\r\n      name\r\n      shortName\r\n    }\r\n    standard {\r\n      id\r\n      name\r\n      displayName\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -469,15 +487,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -529,15 +541,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -578,7 +584,7 @@
 							"script": {
 								"exec": [
 									"pm.environment.set(\"stAlBlockTitle\",\"standalone_block_test_\"+Date.now());\r",
-									"postman.setEnvironmentVariable(\"bID\",\"TTCBEN\"+Date.now());"
+									"//postman.setEnvironmentVariable(\"bID\",\"TTCBEN\"+Date.now());"
 								],
 								"type": "text/javascript"
 							}
@@ -601,15 +607,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -623,19 +623,30 @@
 							"script": {
 								"exec": [
 									"var jsonData=JSON.parse(responseBody);\r",
-									"var noOfBlocks=jsonData.data.blockMap.blocks.length;\r",
-									"// pm.environment.set(\"blockSequence\",(jsonData.data.blockMap.blocks[noOfBlocks-1].displaySequence)+1);\r",
+									"//var noOfBlocks=jsonData.data.blockMap.blocks.length;\r",
 									"\r",
-									"if(jsonData.data.blockMap.blocks[0].displaySequence==(null)){\r",
+									"pm.test(\"verify 200 status code\",()=>{\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"// pm.environment.set(\"blockSequence\",(jsonData.data.blockMap.blocks[noOfBlocks-1].displaySequence)+1);\r",
+									"if(jsonData.data.blockMap.blocks.length<1){\r",
 									"    postman.setEnvironmentVariable(\"blockSequence\",jsonData.data.blockMap.blocks.length+1);\r",
 									"}\r",
 									"else{\r",
-									"    var j=0;\r",
-									"    for(j=0;j<jsonData.data.blockMap.blocks.length;j++){\r",
-									"    var disSeq=jsonData.data.blockMap.blocks[j].displaySequence;\r",
+									"    if(jsonData.data.blockMap.blocks[0].displaySequence==(null)){\r",
+									"        postman.setEnvironmentVariable(\"blockSequence\",jsonData.data.blockMap.blocks.length+1);\r",
 									"    }\r",
-									"    pm.environment.set(\"blockSequence\",disSeq+1);  \r",
-									"}"
+									"    else{\r",
+									"        var j=0;\r",
+									"            for(j=0;j<jsonData.data.blockMap.blocks.length;j++){\r",
+									"            var disSeq=jsonData.data.blockMap.blocks[j].displaySequence;\r",
+									"        }\r",
+									"        pm.environment.set(\"blockSequence\",disSeq+1);  \r",
+									"    }\r",
+									"}\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -658,15 +669,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "http",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -710,15 +715,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -760,15 +759,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -825,15 +818,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -878,15 +865,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -912,7 +893,7 @@
 									"    }\r",
 									"}\r",
 									"\r",
-									"pm.test(\"verify Available Block\",()=>{\r",
+									"pm.test(\"verify 200 Status Code\",()=>{\r",
 									"    pm.response.to.be.ok;\r",
 									"    pm.expect(pm.response.code).to.eql(200);\r",
 									"});"
@@ -938,15 +919,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -1006,19 +981,13 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation createProject($input: ProjectCreateInputType!) {\r\n  createProject(input: $input) {\r\n        id\r\n        name\r\n        workflowStatus\r\n        product {\r\n            id\r\n            name\r\n        }\r\n        board {\r\n            id\r\n            name\r\n        }\r\n        standard {\r\n            id\r\n            name\r\n            displayName\r\n        }\r\n        subject {\r\n            id\r\n            name\r\n        }\r\n        block {\r\n            id\r\n            bId\r\n            title\r\n            childrenType\r\n        }\r\n        contents {\r\n            id\r\n            library_id\r\n            name\r\n            type\r\n            template\r\n            currentStage\r\n        }\r\n        dailyPlans {\r\n            id\r\n            library_id\r\n            name\r\n            type\r\n            currentStage\r\n        }\r\n        assignees {\r\n            author {\r\n                id\r\n                name\r\n            }\r\n            reviewer1 {\r\n                id\r\n                name\r\n            }\r\n            reviewer2 {\r\n                id\r\n                name\r\n            }\r\n            academicSignOff {\r\n                id\r\n                name\r\n            }\r\n            editor {\r\n                id\r\n                name\r\n            }\r\n            visualizer {\r\n                id\r\n                name\r\n            }\r\n            assetUploader {\r\n                id\r\n                name\r\n            }\r\n            assetAuthorizer {\r\n                id\r\n                name\r\n            }\r\n            proofReader {\r\n                id\r\n                name\r\n            }\r\n        }\r\n    }\r\n}\r\n",
-								"variables": "{\r\n  \"input\": {\r\n    \"name\": \"{{lpName}}\",\r\n    \"boardId\": {{boardID}},\r\n    \"subjectId\": {{subjectID}},\r\n    \"standardId\": {{standardID}},\r\n    \"productId\": {{productID}},\r\n    \"entityId\": {{linkBlockId}},\r\n    \"entityType\": \"Block\",\r\n    \"type\": \"LessonPlan\",\r\n    \"childrenEntityIds\": [\r\n      {{createdLpId}}\r\n    ],\r\n    \"assignees\": {\r\n      \"author\": \"skip\",\r\n      \"reviewer1\": \"skip\",\r\n      \"reviewer2\": \"skip\",\r\n      \"academicSignOff\": \"skip\",\r\n      \"editor\": \"615339ab43a5ff0011f4ed64\",\r\n      \"visualizer\": \"615339ab43a5ff0011f4ed64\",\r\n      \"assetUploader\": \"615339ab43a5ff0011f4ed64\",\r\n      \"assetAuthorizer\": \"615339ab43a5ff0011f4ed64\",\r\n      \"proofReader\": \"615339ab43a5ff0011f4ed64\"\r\n    }\r\n  }\r\n}"
+								"variables": "{\r\n  \"input\": {\r\n    \"name\": \"{{lpName}}\",\r\n    \"boardId\": {{boardID}},\r\n    \"subjectId\": {{subjectID}},\r\n    \"standardId\": {{standardID}},\r\n    \"productId\": {{productID}},\r\n    \"entityId\": {{linkBlockId}},\r\n    \"entityType\": \"Block\",\r\n    \"type\": \"LessonPlan\",\r\n    \"childrenEntityIds\": [\r\n      {{createdLpId}}\r\n    ],\r\n    \"assignees\": {\r\n      \"author\": \"skip\",\r\n      \"reviewer1\": \"skip\",\r\n      \"reviewer2\": \"skip\",\r\n      \"academicSignOff\": \"skip\",\r\n      \"editor\": \"{{stUserLoginId}}\",\r\n      \"visualizer\": \"{{stUserLoginId}}\",\r\n      \"assetUploader\": \"{{stUserLoginId}}\",\r\n      \"assetAuthorizer\": \"{{stUserLoginId}}\",\r\n      \"proofReader\": \"{{stUserLoginId}}\"\r\n    }\r\n  }\r\n}"
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -1058,12 +1027,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1088,16 +1057,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1136,12 +1098,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1166,16 +1128,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1214,12 +1169,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1244,16 +1199,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1292,12 +1240,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1322,16 +1270,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1370,12 +1311,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1400,16 +1341,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1448,12 +1382,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1478,16 +1412,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1526,12 +1453,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1556,16 +1483,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1604,12 +1524,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1634,16 +1554,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1683,12 +1596,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1713,16 +1626,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1761,12 +1667,12 @@
 							},
 							{
 								"key": "Referer",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{referer}}",
 								"type": "text"
 							},
 							{
 								"key": "Origin",
-								"value": "https://ces.xseeddigital.info/",
+								"value": "{{origin}}",
 								"type": "text"
 							}
 						],
@@ -1791,16 +1697,9 @@
 							]
 						},
 						"url": {
-							"raw": "https://xseed-rest-gateway.xseeddigital.info/api/upload",
-							"protocol": "https",
+							"raw": "{{uploadURL}}",
 							"host": [
-								"xseed-rest-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"api",
-								"upload"
+								"{{uploadURL}}"
 							]
 						}
 					},
@@ -1862,15 +1761,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2054,15 +1947,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2106,15 +1993,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2158,15 +2039,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2210,15 +2085,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2262,15 +2131,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2318,15 +2181,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-gateway.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{apiHost}}",
 							"host": [
-								"xseed-gateway",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{apiHost}}"
 							]
 						}
 					},
@@ -2379,11 +2236,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/v2/generate_otp",
+							"raw": "https://accounts-api.edpulse.info/api/v2/generate_otp",
 							"protocol": "https",
 							"host": [
 								"accounts-api",
-								"xseeddigital",
+								"edpulse",
 								"info"
 							],
 							"path": [
@@ -2450,11 +2307,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/v2/verify_otp",
+							"raw": "https://accounts-api.edpulse.info/api/v2/verify_otp",
 							"protocol": "https",
 							"host": [
 								"accounts-api",
-								"xseeddigital",
+								"edpulse",
 								"info"
 							],
 							"path": [
@@ -2522,11 +2379,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://accounts-api.xseeddigital.info/api/updateUserTimezone",
+							"raw": "https://accounts-api.edpulse.info/api/updateUserTimezone",
 							"protocol": "https",
 							"host": [
 								"accounts-api",
-								"xseeddigital",
+								"edpulse",
 								"info"
 							],
 							"path": [
@@ -2581,15 +2438,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-super-teacher-backend.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{staApiHost}}",
 							"host": [
-								"xseed-super-teacher-backend",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{staApiHost}}"
 							]
 						}
 					},
@@ -2628,15 +2479,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-super-teacher-backend.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{staApiHost}}",
 							"host": [
-								"xseed-super-teacher-backend",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{staApiHost}}"
 							]
 						}
 					},
@@ -2687,15 +2532,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-super-teacher-backend.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{staApiHost}}",
 							"host": [
-								"xseed-super-teacher-backend",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{staApiHost}}"
 							]
 						}
 					},
@@ -2735,15 +2574,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-super-teacher-backend.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{staApiHost}}",
 							"host": [
-								"xseed-super-teacher-backend",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{staApiHost}}"
 							]
 						}
 					},
@@ -2813,15 +2646,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-super-teacher-backend.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{staApiHost}}",
 							"host": [
-								"xseed-super-teacher-backend",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{staApiHost}}"
 							]
 						}
 					},
@@ -2861,15 +2688,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://xseed-super-teacher-backend.xseeddigital.info/graphql",
-							"protocol": "https",
+							"raw": "{{staApiHost}}",
 							"host": [
-								"xseed-super-teacher-backend",
-								"xseeddigital",
-								"info"
-							],
-							"path": [
-								"graphql"
+								"{{staApiHost}}"
 							]
 						}
 					},
