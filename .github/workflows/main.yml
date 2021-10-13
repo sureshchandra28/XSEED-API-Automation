@@ -33,12 +33,10 @@ jobs:
           npm install -g newman-reporter-htmlextra
 
       # Uploads report artifacts which can be downloaded post run is complete
-      # Uploads report artifacts which can be downloaded post run is complete
       - name: Run XSeed Standard Lesson Plan Collection
         id: runCollection
         run: |
           newman run src/resources/postman-collections/CreateStandardLessonPlan.postman_collection.json -r "htmlextra,cli" --bail  
-          newman run src/resources/postman-collections/CreateAStandardLessonPlan.postman_collection.json -r "htmlextra,cli" --bail
           newman run src/resources/postman-collections/CreateMultipleBlockProjectLessonPlan.postman_collection.json -r "htmlextra,cli" --bail
           newman run src/resources/postman-collections/ValidateAProject.postman_collection.json -r "htmlextra,cli" --bail
           newman run src/resources/postman-collections/JourneyOfAProjectInVariousStages.postman_collection.json -r "htmlextra,cli" --bail
